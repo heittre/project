@@ -1,13 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import App from "./App";
+import Card from "./components/Card";
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+
+
     <App />
+    {/* <Card /> */}
+    {/* <Card 
+    img =""
+    name="chamudi"
+    phone="123"
+    email="blah@gmail.com"
+    />
+    <Card 
+    img =""
+    name="suparna"
+    phone="0702191756"
+    email="hoo@gmail.com"
+    /> */}
   </React.StrictMode>
 );
 
