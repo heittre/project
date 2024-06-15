@@ -1,4 +1,6 @@
-import React, {useState,useEffect,Component} from 'react';
+import React, {useState,useEffect, Component} from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+
 import axios from 'axios';
 
 export default function BabiesPostDetails() {
@@ -15,6 +17,29 @@ export default function BabiesPostDetails() {
             });
     }, []);
     
+
+    const BuyButton = ({ post }) => {
+        const navigate = useNavigate();  // Replace useHistory with useNavigate
+    
+        const buyNow = () => {
+            console.log("button clicked!");
+            navigate(`/dashboard/babies/post/${post._id}`); // Use navigate instead of history.push
+        };
+    
+        return (
+            <button
+                type="button"
+                className="btn btn-warning ml-2 mt-4"
+                onClick={buyNow}
+            >
+                Buy now
+            </button>
+        );
+    };
+    
+    
+
+
         
     const { topic, description, price, image1, image2 } = post;
 
@@ -46,7 +71,8 @@ export default function BabiesPostDetails() {
                                 <a href="../">
                                     <button type="button" class="btn btn-danger mr-2 mt-4">Cancel</button>
                                 </a>
-                                <button type="button" class="btn btn-warning ml-2 mt-4">Buy now</button>
+                                <BuyButton post={post} />
+
                             </div>
                         </div>
                     </li>
@@ -56,3 +82,4 @@ export default function BabiesPostDetails() {
     </div>
   )
 }
+

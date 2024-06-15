@@ -9,7 +9,8 @@ import AccessoriesEditPost from './components/AccessoriesEditPost';
 import BabiesCreatePost from './components/BabiesCreatePost';
 import BabiesHome from './components/BabiesHome';
 import BabiesPostDetails from './components/BabiesPostDetails';
-
+import BabiesEditPost from './components/BabiesEditPost';
+import BabiesCheckout  from './components/BabiesCheckout';
 
 class App extends Component {
   render() {
@@ -24,6 +25,9 @@ class App extends Component {
           <Route path="/dashboard/babies" element={<BabiesHome />}/>
           <Route path="/dashboard/babies/add" element={<BabiesCreatePost />}/>
           <Route path="/dashboard/babies/post/:id" element={<BabiesPostDetails />} />
+          <Route path="/dashboard/babies/edit/:id" element={<BabiesEditPost />}/>
+          <Route path="/babies/checkout/:id" element={<BabiesCheckout />}/>
+
 
           </Routes>
         </div>

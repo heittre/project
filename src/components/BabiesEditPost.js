@@ -1,4 +1,5 @@
 import React, {Component,useState,useEffect} from 'react'
+import axios from 'axios'
 
 export default function BabiesEditPost() {
     const [post,setPost] = useState({
@@ -13,7 +14,7 @@ export default function BabiesEditPost() {
     
     const onSubmit = (e) => {
             e.preventDefault();
-            //still backend URL is http://localhost:8000/babies/post/${id}
+            //still backend URL is http://localhost:3000/babies/post/${id}
             const id = window.location.pathname.substring(23);
             const { topic, description, price, image1, image2 } = post;
 
@@ -45,25 +46,34 @@ export default function BabiesEditPost() {
     
     const handleInputChange = (e) => {
                 const {name,value} = e.target;
-                ...prevFormData,
-                [name] : value
-
-                
+                setPost(prevPost => {
+                    return{
+                        ...prevPost,
+                        [e.target.name] : e.target.value
+                    }
+                })                
     }
 
     useEffect(()=>{
         const id = window.location.pathname.substring(23);
-        axios.get(`http://localhost:8000/babies/post/${id}`)
+        axios.get(`http://localhost:3000/babies/post/${id}`)
         .then(res=>{
             setPost(() => {
                 return{
-                    [e.target.name] : e.target.value
+                    topic: res.data.post.topic,
+                    description: res.data.post.description,
+                    price:res.data.post.price,
+                    image1: res.data.post.image1,
+                    image2: res.data.post.image2
+ 
                 }
             })
+
         })
         .catch(err=>{})
-        
+        console.log(post);
     },[])
+    const { topic, description, price, image1, image2 } = post;
 
   return (
     <div>
@@ -95,7 +105,7 @@ export default function BabiesEditPost() {
                                 name='description'
                                 placeholder='Enter Description'
                                 value={description}
-                                onChange={this.handleInputChange}/>
+                                onChange={handleInputChange}/>
                             </div>
                         </div>
                     </div>
